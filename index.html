@@ -277,38 +277,40 @@
         header {
             position: relative;
             overflow: hidden;
-            z-index: 1;
+            z-index: 0;
+            /* importante para stacking context */
+            background-color: rgba(15, 23, 42, 0.95);
+            /* le da transparencia al fondo */
         }
 
         header::after {
             content: '';
             position: absolute;
-            top: -20px;
-            left: 50%;
-            width: 150%;
-            height: 150%;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
             pointer-events: none;
             background:
-                radial-gradient(circle, #00ffc3 2px, transparent 3px),
-                radial-gradient(circle, #5eead4 2px, transparent 3px),
-                radial-gradient(circle, #00ffc3 2px, transparent 3px),
-                radial-gradient(circle, #5eead4 2px, transparent 3px);
-            background-size: 200px 200px;
-            background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
-            animation: mover-particulas 20s linear infinite;
-            transform: translateX(-50%);
-            opacity: 0.2;
+                radial-gradient(circle, #00ffc3 1px, transparent 2px),
+                radial-gradient(circle, #5eead4 1px, transparent 2px),
+                radial-gradient(circle, #00ffc3 1px, transparent 2px),
+                radial-gradient(circle, #5eead4 1px, transparent 2px);
+            background-size: 100px 100px;
+            background-position: 0 0, 25px 25px, 50px 50px, 75px 75px;
+            animation: mover-particulas 30s linear infinite;
+            opacity: 0.3;
             z-index: -1;
-            filter: blur(1px);
+            filter: blur(0.5px);
         }
 
         @keyframes mover-particulas {
             0% {
-                background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
+                background-position: 0 0, 25px 25px, 50px 50px, 75px 75px;
             }
 
             100% {
-                background-position: 100px 100px, 150px 150px, 200px 200px, 250px 250px;
+                background-position: 100px 100px, 125px 125px, 150px 150px, 175px 175px;
             }
         }
 
