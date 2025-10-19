@@ -1,11 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mundo Informático</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: #ffffff;
+        }
+
+        header {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #2c5282;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        article {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        article img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e3a8a;
+            color: white;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #1e3a8a;
+        }
+
+        .contact-form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .contact-form button {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #2c5282;
+        }
+    </style>
 </head>
+
 <body>
-    
+
+    <header>
+        <h1>Mundo Informático</h1>
+        <p>Un blog técnico para aprender informática paso a paso</p>
+    </header>
+
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#entradas">Entradas</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <main id="inicio">
+
+        <section id="sobre-mi">
+            <article>
+                <h2>Sobre mí</h2>
+                <p>Hola, soy estudiante de 2º SMR y me apasiona la tecnología. En este blog comparto lo que aprendo
+                    sobre informática, sistemas operativos, montaje de PCs y herramientas útiles para el día a día.</p>
+            </article>
+        </section>
+
+        <section id="entradas">
+
+            <article>
+                <h2>¿Qué es un sistema operativo?</h2>
+                <p>Un sistema operativo es el software principal que permite interactuar con el hardware del ordenador y
+                    ejecutar otros programas. Algunos ejemplos populares son Windows, Linux y macOS.</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Operating_system_placement.svg/800px-Operating_system_placement.svg.png"
+                    alt="Imagen sobre sistema operativo">
+                <p><strong>Funciones clave:</strong></p>
+                <ul>
+                    <li>Gestión de recursos del sistema</li>
+                    <li>Interfaz para el usuario</li>
+                    <li>Control de archivos y procesos</li>
+                </ul>
+                <p>📎 <a href="https://es.wikipedia.org/wiki/Sistema_operativo" target="_blank">Más información sobre
+                        sistemas operativos</a></p>
+            </article>
+
+            <article>
+                <h2>Cómo montar un PC paso a paso</h2>
+                <p>Montar tu propio ordenador te permite ahorrar dinero y elegir exactamente los componentes que
+                    necesitas. Aquí tienes los pasos básicos:</p>
+                <ol>
+                    <li>Instalar la CPU y la RAM en la placa base</li>
+                    <li>Colocar la placa en la torre</li>
+                    <li>Instalar la fuente de alimentación</li>
+                    <li>Conectar el almacenamiento y la gráfica</li>
+                    <li>Cerrar la torre y conectar periféricos</li>
+                </ol>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/PC_Assembly_Example.jpg/800px-PC_Assembly_Example.jpg"
+                    alt="Montaje de PC">
+                <p>🎥 <a href="https://www.youtube.com/watch?v=VIF43-0mDk4" target="_blank">Ver tutorial en YouTube</a>
+                </p>
+            </article>
+
+            <article>
+                <h2>5 herramientas gratuitas para limpiar tu PC</h2>
+                <p>¿Tu PC va lento? Usa estas herramientas gratuitas para optimizar su rendimiento:</p>
+                <ul>
+                    <li><strong>CCleaner:</strong> Limpia archivos innecesarios.</li>
+                    <li><strong>Malwarebytes:</strong> Detecta y elimina malware.</li>
+                    <li><strong>BleachBit:</strong> Alternativa de código abierto.</li>
+                    <li><strong>AVG TuneUp:</strong> Mejora el rendimiento general.</li>
+                    <li><strong>Glary Utilities:</strong> Paquete todo-en-uno.</li>
+                </ul>
+                <img src="https://www.ccleaner.com/docs/images/ccleaner/ccleaner-home.png" alt="Ejemplo de CCleaner">
+                <p>📎 <a href="https://www.ccleaner.com/" target="_blank">Descargar CCleaner</a></p>
+            </article>
+
+        </section>
+
+        <section id="contacto">
+            <article class="contact-form">
+                <h2>Contacto</h2>
+                <form action="mailto:tuemail@example.com" method="post" enctype="text/plain">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+                    <button type="submit">Enviar</button>
+                </form>
+            </article>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 Mundo Informático | Blog creado para el módulo de Aplicaciones Web - 2º SMR</p>
+    </footer>
+
 </body>
+
 </html>
