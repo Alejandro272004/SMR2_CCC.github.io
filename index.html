@@ -295,6 +295,29 @@
             }
         }
 
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 150%;
+            height: 150%;
+            pointer-events: none;
+            background:
+                radial-gradient(circle, #00ffc3 2px, transparent 3px),
+                radial-gradient(circle, #5eead4 2px, transparent 3px),
+                radial-gradient(circle, #00ffc3 2px, transparent 3px),
+                radial-gradient(circle, #5eead4 2px, transparent 3px);
+            background-size: 200px 200px;
+            background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
+            animation: mover-particulas 20s linear infinite;
+            transform: translateX(-25%);
+            opacity: 0.1;
+            z-index: -3;
+            filter: blur(1px);
+        }
+
+
         /* EFECTO DE MÁQUINA DE ESCRIBIR EN EL SUBTÍTULO */
         header p {
             overflow: hidden;
