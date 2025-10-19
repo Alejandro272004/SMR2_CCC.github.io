@@ -236,6 +236,84 @@
             color: #f1f1f1;
             border: 1px solid #475569;
         }
+
+        /* ANIMACIÓN NEÓN PARA TÍTULO Y BOTÓN */
+        @keyframes neón-brillo {
+
+            0%,
+            100% {
+                text-shadow:
+                    0 0 5px #00ffc3,
+                    0 0 10px #00ffc3,
+                    0 0 20px #00ffc3,
+                    0 0 40px #00ffc3;
+            }
+
+            50% {
+                text-shadow:
+                    0 0 10px #5eead4,
+                    0 0 20px #5eead4,
+                    0 0 30px #5eead4,
+                    0 0 50px #5eead4;
+            }
+        }
+
+        header h1 {
+            animation: neón-brillo 3s infinite alternate;
+        }
+
+        #modo-toggle {
+            animation: neón-brillo 4s infinite alternate;
+            box-shadow: 0 0 10px #00ffc3;
+            transition: box-shadow 0.3s;
+        }
+
+        #modo-toggle:hover {
+            box-shadow: 0 0 20px #5eead4;
+        }
+
+        /* PARTICULAS BRILLANTES EN HEADER */
+        header {
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            pointer-events: none;
+            background: radial-gradient(circle at 20% 30%, #00ffc3 2px, transparent 3px),
+                radial-gradient(circle at 80% 50%, #00ffc3 3px, transparent 4px),
+                radial-gradient(circle at 50% 70%, #5eead4 1.5px, transparent 2.5px),
+                radial-gradient(circle at 70% 20%, #5eead4 2.5px, transparent 3.5px);
+            background-repeat: no-repeat;
+            animation: mover-particulas 20s linear infinite;
+            transform: translateX(-50%);
+            opacity: 0.3;
+            filter: blur(1px);
+        }
+
+        @keyframes mover-particulas {
+            0% {
+                background-position:
+                    20% 30%,
+                    80% 50%,
+                    50% 70%,
+                    70% 20%;
+            }
+
+            100% {
+                background-position:
+                    25% 35%,
+                    75% 45%,
+                    55% 65%,
+                    65% 25%;
+            }
+        }
     </style>
 </head>
 
