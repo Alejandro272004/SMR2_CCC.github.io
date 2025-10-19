@@ -319,43 +319,44 @@
             white-space: nowrap;
             margin: 0 auto;
             letter-spacing: .05em;
-            animation: escribir 4s steps(40, end) forwards, parpadeo-cursor 0.75s step-end infinite;
-            max-width: 100%;
-            width: 0;
-        }
+            animation: escribir 4s steps(48, end) forwards, parpadeo-cursor 0.75s step-end infinite;
+            width: 0ch;
 
 
 
-        @keyframes escribir {
-            from {
-                width: 0;
+            @keyframes escribir {
+                from {
+                    width: 0ch;
+                }
+
+                to {
+                    width: 48ch;
+                    /* Aproximadamente el número de caracteres del subtítulo */
+                }
             }
 
-            to {
-                width: 100%;
+
+
+            @keyframes parpadeo-cursor {
+
+                from,
+                to {
+                    border-color: transparent;
+                }
+
+                50% {
+                    border-color: #00ffc3;
+                }
             }
-        }
 
-        @keyframes parpadeo-cursor {
-
-            from,
-            to {
-                border-color: transparent;
+            header h1:hover {
+                transform: scale(1.05) rotateX(5deg) rotateY(5deg);
+                text-shadow:
+                    0 0 10px #00ffc3,
+                    0 0 20px #5eead4,
+                    0 0 30px #5eead4;
+                transition: transform 0.3s ease, text-shadow 0.3s ease;
             }
-
-            50% {
-                border-color: #00ffc3;
-            }
-        }
-
-        header h1:hover {
-            transform: scale(1.05) rotateX(5deg) rotateY(5deg);
-            text-shadow:
-                0 0 10px #00ffc3,
-                0 0 20px #5eead4,
-                0 0 30px #5eead4;
-            transition: transform 0.3s ease, text-shadow 0.3s ease;
-        }
     </style>
 </head>
 
