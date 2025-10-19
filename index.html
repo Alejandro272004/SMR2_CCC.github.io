@@ -197,7 +197,7 @@
         <a href="#contacto">Contacto</a>
     </nav>
     <div style="text-align: center; padding: 20px;">
-        <input type="text" id="" buscador" placeholder="Buscar en el blog..."
+        <input type="text" id="buscador" placeholder="Buscar en el blog..."
             style="width: 80%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
     </div>
 
@@ -314,6 +314,32 @@
             // Hacer scroll al primer artículo visible
             if (primerCoincidencia) {
                 primerCoincidencia.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                buscador.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault(); // evita el comportamiento por defecto
+
+                        const valor = buscador.value.toLowerCase().trim();
+
+                        // Mapeo de palabras clave a secciones
+                        const secciones = {
+                            'inicio': '#inicio',
+                            'sobre mí': '#sobre-mi',
+                            'sobremi': '#sobre-mi',
+                            'entradas': '#entradas',
+                            'contacto': '#contacto'
+                        };
+
+                        // Buscar coincidencia exacta
+                        const destino = secciones[valor];
+
+                        if (destino) {
+                            window.location.hash = destino; // navega a la sección
+                        } else {
+                            alert("Sección no encontrada. Prueba con: Inicio, Sobre mí, Entradas o Contacto.");
+                        }
+                    }
+                });
+
             }
 
     </script>
