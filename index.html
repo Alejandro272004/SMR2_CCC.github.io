@@ -17,48 +17,54 @@
             background-color: #ffffff;
             color: #000000;
             transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
         }
 
         header {
-            background-color: #1e3a8a;
-            color: white;
+            background-color: #0f172a;
+            color: #00ffc3;
             padding: 20px;
             text-align: center;
             position: relative;
+            box-shadow: 0 4px 8px rgba(0, 255, 195, 0.2);
         }
 
         #modo-toggle {
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: #ffffff;
-            color: #1e3a8a;
+            background-color: #00ffc3;
+            color: #0f172a;
             border: none;
             padding: 8px 12px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
+            transition: background-color 0.3s;
         }
 
         #modo-toggle:hover {
-            background-color: #e2e8f0;
+            background-color: #5eead4;
         }
 
         nav {
-            background-color: #2c5282;
-            padding: 10px;
+            background-color: #1e293b;
+            padding: 12px;
             text-align: center;
+            box-shadow: inset 0 -2px 0 #00ffc3;
         }
 
         nav a {
-            color: white;
+            color: #ffffff;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 20px;
             font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s;
         }
 
         nav a:hover {
-            text-decoration: underline;
+            color: #00ffc3;
         }
 
         main {
@@ -68,116 +74,142 @@
         }
 
         article {
-            background-color: white;
-            padding: 20px;
+            background-color: #f9f9f9;
+            padding: 25px;
             margin-bottom: 30px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        article:hover {
+            transform: translateY(-4px);
         }
 
         article img {
             max-width: 100%;
-            border-radius: 5px;
+            border-radius: 6px;
+            margin-top: 15px;
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background-color: #1e3a8a;
-            color: white;
+            background-color: #0f172a;
+            color: #00ffc3;
         }
 
         h1,
         h2,
         h3 {
-            color: #1e3a8a;
+            color: #0f172a;
         }
 
         .contact-form {
-            background-color: #ffffff;
+            background-color: #f1f5f9;
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
         }
 
         .contact-form input,
         .contact-form textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-top: 10px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-size: 1em;
         }
 
         .contact-form button {
-            background-color: #1e3a8a;
-            color: white;
-            padding: 10px 20px;
+            background-color: #00ffc3;
+            color: #0f172a;
+            padding: 12px 24px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
 
         .contact-form button:hover {
-            background-color: #2c5282;
+            background-color: #5eead4;
+        }
+
+        /* Buscador */
+        #buscador {
+            width: 80%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #94a3b8;
+            font-size: 1em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         /* Modo Oscuro */
         .dark-mode {
-            background-color: #121212;
+            background-color: #0d1117;
             color: #e0e0e0;
         }
 
         .dark-mode header {
-            background-color: #0d47a1;
+            background-color: #0f172a;
+            color: #00ffc3;
         }
 
         .dark-mode nav {
-            background-color: #1e3a8a;
+            background-color: #1f2937;
         }
 
         .dark-mode article {
-            background-color: #1e1e1e;
-            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+            background-color: #161b22;
+            box-shadow: 0 4px 10px rgba(0, 255, 195, 0.1);
         }
 
         .dark-mode footer {
-            background-color: #0d47a1;
+            background-color: #0f172a;
         }
 
         .dark-mode h1,
         .dark-mode h2,
         .dark-mode h3 {
-            color: #90caf9;
+            color: #5eead4;
         }
 
         .dark-mode .contact-form {
-            background-color: #1e1e1e;
+            background-color: #1e293b;
         }
 
         .dark-mode #modo-toggle {
-            background-color: #374151;
-            color: #f1f1f1;
+            background-color: #00ffc3;
+            color: #0f172a;
         }
 
         .dark-mode #modo-toggle:hover {
-            background-color: #4b5563;
+            background-color: #5eead4;
         }
 
         .dark-mode .contact-form input,
         .dark-mode .contact-form textarea {
-            background-color: #2a2a2a;
-            color: #ffffff;
-            border: 1px solid #444;
+            background-color: #334155;
+            color: #f1f5f9;
+            border: 1px solid #475569;
         }
 
         .dark-mode .contact-form button {
-            background-color: #2563eb;
+            background-color: #00ffc3;
         }
 
         .dark-mode .contact-form button:hover {
-            background-color: #1d4ed8;
+            background-color: #5eead4;
+        }
+
+        .dark-mode #buscador {
+            background-color: #1e293b;
+            color: #f1f1f1;
+            border: 1px solid #475569;
         }
     </style>
 </head>
