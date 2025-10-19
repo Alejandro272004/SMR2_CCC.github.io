@@ -297,30 +297,34 @@
         const buscador = document.getElementById('buscador');
         const articulos = document.querySelectorAll('#entradas article');
 
-        // Filtrar artículos al escribir
+        // 🔍 Filtro de artículos por contenido
         buscador.addEventListener('input', () => {
-            const texto = buscador.value.toLowerCase();
+            const texto = buscador.value.toLowerCase().trim();
             let primerCoincidencia = null;
+            let hayCoincidencias = false;
 
             articulos.forEach(articulo => {
                 const contenido = articulo.textContent.toLowerCase();
                 const coincide = contenido.includes(texto);
-                articulo.style.display = coincide ? 'block' : 'none';
+
+                articulo.style.display = coincide || texto === "" ? 'block' : 'none';
 
                 if (coincide && !primerCoincidencia) {
                     primerCoincidencia = articulo;
+                    hayCoincidencias = true;
                 }
             });
 
-            if (primerCoincidencia) {
+            // Hacer scroll si hay coincidencias
+            if (hayCoincidencias && primerCoincidencia) {
                 primerCoincidencia.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
 
-        // Ir a la sección al pulsar Enter si coincide con secciones clave
+        // Ir a sección específica si se escribe algo como "contacto", "entradas", etc.
         buscador.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
-                e.preventDefault(); // evitar que recargue o haga otra acción
+                e.preventDefault();
 
                 const valor = buscador.value.toLowerCase().trim();
 
@@ -336,12 +340,27 @@
 
                 if (destino) {
                     document.querySelector(destino).scrollIntoView({ behavior: 'smooth' });
+                    // Mostrar todos los artículos si vamos a sección
+                    articulos.forEach(articulo => articulo.style.display = 'block');
+                    buscador.value = ""; // limpiar buscador tras ir a sección
                 } else {
-                    alert("Sección no encontrada. Usa: Inicio, Sobre mí, Entradas o Contacto.");
+                    // Si no es una sección, entonces intenta buscar dentro del blog (ya se filtra por input)
+                    let coincidencias = 0;
+                    articulos.forEach(articulo => {
+                        const contenido = articulo.textContent.toLowerCase();
+                        const coincide = contenido.includes(valor);
+                        articulo.style.display = coincide ? 'block' : 'none';
+                        if (coincide) coincidencias++;
+                    });
+
+                    if (coincidencias === 0) {
+                        alert("No se encontraron resultados relacionados con esa búsqueda.");
+                    }
                 }
             }
         });
     </script>
+
 
 
 </body>
