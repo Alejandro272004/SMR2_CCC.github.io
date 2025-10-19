@@ -295,11 +295,22 @@
         buscador.addEventListener('input', () => {
             const texto = buscador.value.toLowerCase();
 
+            let primerCoincidencia = null;
+
             articulos.forEach(articulo => {
                 const contenido = articulo.textContent.toLowerCase();
-                articulo.style.display = contenido.includes(texto) ? 'block' : 'none';
+                const coincide = contenido.includes(texto);
+                articulo.style.display = coincide ? 'block' : 'none';
+
+                if (coincide && !primerCoincidencia) {
+                    primerCoincidencia = articulo;
+                }
             });
-        });
+
+            // Hacer scroll al primer artículo visible
+            if (primerCoincidencia) {
+                primerCoincidencia.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
 
     </script>
 
