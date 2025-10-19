@@ -293,12 +293,13 @@
             document.body.classList.toggle('dark-mode');
             botonModo.textContent = document.body.classList.contains('dark-mode') ? 'Modo claro' : 'Modo oscuro';
         });
+
         const buscador = document.getElementById('buscador');
         const articulos = document.querySelectorAll('#entradas article');
 
+        // Filtrar artículos al escribir
         buscador.addEventListener('input', () => {
             const texto = buscador.value.toLowerCase();
-
             let primerCoincidencia = null;
 
             articulos.forEach(articulo => {
@@ -311,38 +312,37 @@
                 }
             });
 
-            // Hacer scroll al primer artículo visible
             if (primerCoincidencia) {
                 primerCoincidencia.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                buscador.addEventListener('keydown', function (e) {
-                    if (e.key === 'Enter') {
-                        e.preventDefault(); // evita el comportamiento por defecto
-
-                        const valor = buscador.value.toLowerCase().trim();
-
-                        // Mapeo de palabras clave a secciones
-                        const secciones = {
-                            'inicio': '#inicio',
-                            'sobre mí': '#sobre-mi',
-                            'sobremi': '#sobre-mi',
-                            'entradas': '#entradas',
-                            'contacto': '#contacto'
-                        };
-
-                        // Buscar coincidencia exacta
-                        const destino = secciones[valor];
-
-                        if (destino) {
-                            window.location.hash = destino; // navega a la sección
-                        } else {
-                            alert("Sección no encontrada. Prueba con: Inicio, Sobre mí, Entradas o Contacto.");
-                        }
-                    }
-                });
-
             }
+        });
 
+        // Ir a la sección al pulsar Enter si coincide con secciones clave
+        buscador.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // evitar que recargue o haga otra acción
+
+                const valor = buscador.value.toLowerCase().trim();
+
+                const secciones = {
+                    'inicio': '#inicio',
+                    'sobre mí': '#sobre-mi',
+                    'sobremi': '#sobre-mi',
+                    'entradas': '#entradas',
+                    'contacto': '#contacto'
+                };
+
+                const destino = secciones[valor];
+
+                if (destino) {
+                    document.querySelector(destino).scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert("Sección no encontrada. Usa: Inicio, Sobre mí, Entradas o Contacto.");
+                }
+            }
+        });
     </script>
+
 
 </body>
 
