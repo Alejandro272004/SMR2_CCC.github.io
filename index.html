@@ -38,8 +38,6 @@
             z-index: -2;
         }
 
-
-
         header {
             background-color: #0f172a;
             color: #00ffc3;
@@ -47,6 +45,35 @@
             text-align: center;
             position: relative;
             box-shadow: 0 4px 8px rgba(0, 255, 195, 0.2);
+            overflow: hidden;
+        }
+
+        /* Aquí está la corrección para que el contenido esté sobre las partículas */
+        header * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            pointer-events: none;
+            background:
+                radial-gradient(circle, #00ffc3 2px, transparent 3px),
+                radial-gradient(circle, #5eead4 2px, transparent 3px),
+                radial-gradient(circle, #00ffc3 2px, transparent 3px),
+                radial-gradient(circle, #5eead4 2px, transparent 3px);
+            background-size: 200px 200px;
+            background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
+            animation: mover-particulas 20s linear infinite;
+            transform: translateX(-50%);
+            opacity: 0.2;
+            z-index: 0;
+            filter: blur(1px);
         }
 
         #modo-toggle {
@@ -61,10 +88,13 @@
             cursor: pointer;
             font-weight: bold;
             transition: background-color 0.3s;
+            animation: neón-brillo 4s infinite alternate;
+            box-shadow: 0 0 10px #00ffc3;
         }
 
         #modo-toggle:hover {
             background-color: #5eead4;
+            box-shadow: 0 0 20px #5eead4;
         }
 
         nav {
@@ -125,11 +155,10 @@
             color: #0f172a;
         }
 
-        /* Asegura que el título sea visible en el header */
         header h1 {
             color: #00ffc3;
+            animation: neón-brillo 3s infinite alternate;
         }
-
 
         .contact-form {
             background-color: #f1f5f9;
@@ -164,7 +193,6 @@
             background-color: #5eead4;
         }
 
-        /* Buscador */
         #buscador {
             width: 80%;
             padding: 12px;
@@ -174,7 +202,6 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Modo Oscuro */
         .dark-mode {
             background-color: #0d1117;
             color: #e0e0e0;
@@ -238,7 +265,6 @@
             border: 1px solid #475569;
         }
 
-        /* ANIMACIÓN NEÓN PARA TÍTULO Y BOTÓN */
         @keyframes neón-brillo {
 
             0%,
@@ -259,58 +285,15 @@
             }
         }
 
-        header h1 {
-            animation: neón-brillo 3s infinite alternate;
-        }
-
-        #modo-toggle {
-            animation: neón-brillo 4s infinite alternate;
-            box-shadow: 0 0 10px #00ffc3;
-            transition: box-shadow 0.3s;
-        }
-
-        #modo-toggle:hover {
-            box-shadow: 0 0 20px #5eead4;
-        }
-
-        /* PARTICULAS BRILLANTES EN HEADER */
-        header {
-            background-color: transparent !important;
-            z-index: 1;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 200%;
-            pointer-events: none;
-            background:
-                radial-gradient(circle, #00ffc3 4px, transparent 8px),
-                radial-gradient(circle, #5eead4 3px, transparent 6px),
-                radial-gradient(circle, #00ffc3 2px, transparent 4px);
-            background-size: 150px 150px;
-            background-position: 0 0, 75px 75px, 150px 150px;
-            animation: mover-particulas 10s linear infinite;
-            opacity: 0.6 !important;
-            z-index: -1 !important;
-            filter: none !important;
-        }
-
         @keyframes mover-particulas {
             0% {
-                background-position: 0 0, 75px 75px, 150px 150px;
+                background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
             }
 
             100% {
-                background-position: 150px 150px, 225px 225px, 300px 300px;
+                background-position: 100px 100px, 150px 150px, 200px 200px, 250px 250px;
             }
         }
-
-
-
 
         /* EFECTO DE MÁQUINA DE ESCRIBIR EN EL SUBTÍTULO */
         header p {
@@ -319,46 +302,43 @@
             white-space: nowrap;
             margin: 0 auto;
             letter-spacing: .05em;
-            animation: escribir 4s steps(48, end) forwards, parpadeo-cursor 0.75s step-end infinite;
-            width: 0ch;
+            animation: escribir 4s steps(40, end) forwards, parpadeo-cursor 0.75s step-end infinite;
+            max-width: 100%;
+            width: 0;
         }
 
-
-
-            @keyframes escribir {
-                from {
-                    width: 0ch;
-                }
-
-                to {
-                    width: 48ch;
-                    /* Aproximadamente el número de caracteres del subtítulo */
-                }
+        @keyframes escribir {
+            from {
+                width: 0;
             }
 
+            to {
+                width: 100%;
+            }
+        }
 
+        @keyframes parpadeo-cursor {
 
-            @keyframes parpadeo-cursor {
-
-                from,
-                to {
-                    border-color: transparent;
-                }
-
-                50% {
-                    border-color: #00ffc3;
-                }
+            from,
+            to {
+                border-color: transparent;
             }
 
-            header h1:hover {
-                transform: scale(1.05) rotateX(5deg) rotateY(5deg);
-                text-shadow:
-                    0 0 10px #00ffc3,
-                    0 0 20px #5eead4,
-                    0 0 30px #5eead4;
-                transition: transform 0.3s ease, text-shadow 0.3s ease;
+            50% {
+                border-color: #00ffc3;
             }
+        }
+
+        header h1:hover {
+            transform: scale(1.05) rotateX(5deg) rotateY(5deg);
+            text-shadow:
+                0 0 10px #00ffc3,
+                0 0 20px #5eead4,
+                0 0 30px #5eead4;
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+        }
     </style>
+
 </head>
 
 <body>
