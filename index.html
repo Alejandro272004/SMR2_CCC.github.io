@@ -192,13 +192,18 @@
         <a href="#entradas">Entradas</a>
         <a href="#contacto">Contacto</a>
     </nav>
+    <div style="text-align: center; padding: 20px;">
+        <input type="text" id="" buscador" placeholder="Buscar en el blog..."
+            style="width: 80%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    </div>
 
     <main id="inicio">
 
         <section id="sobre-mi">
             <article>
                 <h2>Sobre mí</h2>
-                <p>Hola, soy estudiante de 2º SMR, me llamo Alejandro González y me apasiona la informatica. En este blog comparto lo que aprendo
+                <p>Hola, soy estudiante de 2º SMR, me llamo Alejandro González y me apasiona la informatica. En este
+                    blog comparto lo que aprendo
                     sobre informática, sistemas operativos, montaje de PCs y herramientas útiles para el día a día.</p>
             </article>
         </section>
@@ -284,6 +289,18 @@
             document.body.classList.toggle('dark-mode');
             botonModo.textContent = document.body.classList.contains('dark-mode') ? 'Modo claro' : 'Modo oscuro';
         });
+        const buscador = document.getElementById('buscador');
+        const articulos = document.querySelectorAll('#entradas article');
+
+        buscador.addEventListener('input', () => {
+            const texto = buscador.value.toLowerCase();
+
+            articulos.forEach(articulo => {
+                const contenido = articulo.textContent.toLowerCase();
+                articulo.style.display = contenido.includes(texto) ? 'block' : 'none';
+            });
+        });
+
     </script>
 
 </body>
