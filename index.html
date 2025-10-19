@@ -287,34 +287,31 @@
             width: 150%;
             height: 150%;
             pointer-events: none;
-            background: radial-gradient(circle at 20% 30%, #00ffc3 2px, transparent 3px),
-                radial-gradient(circle at 80% 50%, #00ffc3 3px, transparent 4px),
-                radial-gradient(circle at 50% 70%, #5eead4 1.5px, transparent 2.5px),
-                radial-gradient(circle at 70% 20%, #5eead4 2.5px, transparent 3.5px);
-            background-repeat: no-repeat;
+            background:
+                radial-gradient(circle, #00ffc3 2px, transparent 3px),
+                radial-gradient(circle, #5eead4 2px, transparent 3px),
+                radial-gradient(circle, #00ffc3 2px, transparent 3px),
+                radial-gradient(circle, #5eead4 2px, transparent 3px);
+            background-size: 200px 200px;
+            background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
             animation: mover-particulas 20s linear infinite;
             transform: translateX(-50%);
-            opacity: 0.3;
+            opacity: 0.2;
+            z-index: 0;
             filter: blur(1px);
         }
 
+
         @keyframes mover-particulas {
             0% {
-                background-position:
-                    20% 30%,
-                    80% 50%,
-                    50% 70%,
-                    70% 20%;
+                background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
             }
 
             100% {
-                background-position:
-                    25% 35%,
-                    75% 45%,
-                    55% 65%,
-                    65% 25%;
+                background-position: 100px 100px, 150px 150px, 200px 200px, 250px 250px;
             }
         }
+
 
         /* EFECTO DE MÁQUINA DE ESCRIBIR EN EL SUBTÍTULO */
         header p {
@@ -323,9 +320,12 @@
             white-space: nowrap;
             margin: 0 auto;
             letter-spacing: .05em;
-            animation: escribir 4s steps(40, end), parpadeo-cursor 0.75s step-end infinite;
+            animation: escribir 4s steps(40, end) forwards, parpadeo-cursor 0.75s step-end infinite;
+            max-width: 100%;
             width: 0;
         }
+
+
 
         @keyframes escribir {
             from {
