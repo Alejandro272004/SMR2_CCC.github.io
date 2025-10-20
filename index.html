@@ -509,13 +509,13 @@
                 }
             });
 
-            // Hacer scroll si hay coincidencias
-            if (hayCoincidencias && primerCoincidencia) {
-                primerCoincidencia.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            // Aquí quité el scroll suave para que no se mueva automáticamente el scroll
+            // Si quieres que no haga nada al filtrar, puedes eliminar esta parte:
+            // if (hayCoincidencias && primerCoincidencia) {
+            //     primerCoincidencia.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // }
         });
 
-        // Ir a sección específica si se escribe algo como "contacto", "entradas", etc.
         buscador.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
@@ -533,26 +533,25 @@
                 const destino = secciones[valor];
 
                 if (destino) {
-                    location.href = destino; // Salto inmediato a la sección
+                    location.href = destino; // Salto inmediato a la sección sin animación
                     buscador.value = ""; // limpiar buscador tras ir a sección
-                }
+                } else {
+                    // Si no es una sección, busca en los artículos (igual que antes)
+                    let coincidencias = 0;
+                    articulos.forEach(articulo => {
+                        const contenido = articulo.textContent.toLowerCase();
+                        const coincide = contenido.includes(valor);
+                        articulo.style.display = coincide ? 'block' : 'none';
+                        if (coincide) coincidencias++;
+                    });
 
-            } else {
-                // Si no es una sección, entonces intenta buscar dentro del blog (ya se filtra por input)
-                let coincidencias = 0;
-                articulos.forEach(articulo => {
-                    const contenido = articulo.textContent.toLowerCase();
-                    const coincide = contenido.includes(valor);
-                    articulo.style.display = coincide ? 'block' : 'none';
-                    if (coincide) coincidencias++;
-                });
-
-                if (coincidencias === 0) {
-                    alert("No se encontraron resultados relacionados con esa búsqueda.");
+                    if (coincidencias === 0) {
+                        alert("No se encontraron resultados relacionados con esa búsqueda.");
+                    }
                 }
             }
-        }
         });
+
     </script>
 
 
