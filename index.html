@@ -482,6 +482,7 @@
     </footer>
 
     <script>
+        // Mantengo tu código original para modo oscuro y buscador intacto
         const botonModo = document.getElementById('modo-toggle');
         botonModo.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
@@ -491,7 +492,6 @@
         const buscador = document.getElementById('buscador');
         const articulos = document.querySelectorAll('#entradas article');
 
-        // 🔍 Filtro de artículos por contenido
         buscador.addEventListener('input', () => {
             const texto = buscador.value.toLowerCase().trim();
             let primerCoincidencia = null;
@@ -500,20 +500,8 @@
             articulos.forEach(articulo => {
                 const contenido = articulo.textContent.toLowerCase();
                 const coincide = contenido.includes(texto);
-
                 articulo.style.display = coincide || texto === "" ? 'block' : 'none';
-
-                if (coincide && !primerCoincidencia) {
-                    primerCoincidencia = articulo;
-                    hayCoincidencias = true;
-                }
             });
-
-            // Aquí quité el scroll suave para que no se mueva automáticamente el scroll
-            // Si quieres que no haga nada al filtrar, puedes eliminar esta parte:
-            // if (hayCoincidencias && primerCoincidencia) {
-            //     primerCoincidencia.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            // }
         });
 
         buscador.addEventListener('keydown', function (e) {
@@ -534,9 +522,8 @@
 
                 if (destino) {
                     location.href = destino; // Salto inmediato a la sección sin animación
-                    buscador.value = ""; // limpiar buscador tras ir a sección
+                    buscador.value = "";
                 } else {
-                    // Si no es una sección, busca en los artículos (igual que antes)
                     let coincidencias = 0;
                     articulos.forEach(articulo => {
                         const contenido = articulo.textContent.toLowerCase();
@@ -552,10 +539,40 @@
             }
         });
 
-    </script>
+        // NUEVO: Mostrar sólo la sección correspondiente cuando clicas en el nav
+        const enlacesNav = document.querySelectorAll('nav a');
+        const secciones = document.querySelectorAll('main > section');
+
+        // Inicialmente mostrar solo #inicio y ocultar el resto
+        secciones.forEach(sec => {
+            if (sec.id === 'inicio') {
+                sec.style.display = 'block';
+            } else {
+                sec.style.display = 'none';
+            }
+        });
+
+        // Evento para controlar clicks en el menú
+        enlacesNav.forEach(enlace => {
+            enlace.addEventListener('click', function (event) {
+                event.preventDefault(); // evitar el salto automático
+
+                const destinoId = this.getAttribute('href').substring(1); // quitar el "#"
+
+                // Mostrar solo la sección clicada
+                secciones.forEach(sec => {
+                    if (sec.id === destinoId) {
+                        sec.style.display = 'block';
+                    } else {
+                        sec.style.display = 'none';
+                    }
+                });
+            });
+        });
 
 
 
-</body>
 
-</html>
+</body >
+
+</html >
