@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mundo Informático</title>
-    <link rel="icon" type="image/png" href="https://pbs.twimg.com/profile_images/2503985690/bckmr92hecuh3rg6upm9_400x400.jpeg">
+    <link rel="icon" type="image/png"
+        href="https://pbs.twimg.com/profile_images/2503985690/bckmr92hecuh3rg6upm9_400x400.jpeg">
     <link rel="stylesheet" href="https://pbs.twimg.com/profile_images/2503985690/bckmr92hecuh3rg6upm9_400x400.jpeg">
-    
+
 
     <style>
         body {
@@ -450,7 +451,7 @@
         <section id="contacto">
             <article class="contact-form">
                 <h2>Contacto</h2>
-                <form action="mailto:tuemail@example.com" method="post" enctype="text/plain">
+                <form action="https://formsubmit.co/gonzalezcaceresalex@gmail.com" method="POST">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
 
@@ -460,8 +461,15 @@
                     <label for="mensaje">Mensaje:</label>
                     <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
 
+                    <!-- Opcional: evitar CAPTCHA -->
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <!-- Opcional: redirigir después de enviar -->
+                    <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
+
                     <button type="submit">Enviar</button>
                 </form>
+
             </article>
         </section>
 
