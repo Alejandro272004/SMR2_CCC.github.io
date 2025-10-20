@@ -533,25 +533,25 @@
                 const destino = secciones[valor];
 
                 if (destino) {
-                    document.querySelector(destino).scrollIntoView({ behavior: 'smooth' });
-                    // Mostrar todos los artículos si vamos a sección
-                    articulos.forEach(articulo => articulo.style.display = 'block');
+                    location.href = destino; // Salto inmediato a la sección
                     buscador.value = ""; // limpiar buscador tras ir a sección
-                } else {
-                    // Si no es una sección, entonces intenta buscar dentro del blog (ya se filtra por input)
-                    let coincidencias = 0;
-                    articulos.forEach(articulo => {
-                        const contenido = articulo.textContent.toLowerCase();
-                        const coincide = contenido.includes(valor);
-                        articulo.style.display = coincide ? 'block' : 'none';
-                        if (coincide) coincidencias++;
-                    });
+                }
 
-                    if (coincidencias === 0) {
-                        alert("No se encontraron resultados relacionados con esa búsqueda.");
-                    }
+            } else {
+                // Si no es una sección, entonces intenta buscar dentro del blog (ya se filtra por input)
+                let coincidencias = 0;
+                articulos.forEach(articulo => {
+                    const contenido = articulo.textContent.toLowerCase();
+                    const coincide = contenido.includes(valor);
+                    articulo.style.display = coincide ? 'block' : 'none';
+                    if (coincide) coincidencias++;
+                });
+
+                if (coincidencias === 0) {
+                    alert("No se encontraron resultados relacionados con esa búsqueda.");
                 }
             }
+        }
         });
     </script>
 
