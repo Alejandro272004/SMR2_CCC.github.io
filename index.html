@@ -1,578 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mundo Informático</title>
-    <link rel="icon" type="image/png"
-        href="https://pbs.twimg.com/profile_images/2503985690/bckmr92hecuh3rg6upm9_400x400.jpeg">
-    <link rel="stylesheet" href="https://pbs.twimg.com/profile_images/2503985690/bckmr92hecuh3rg6upm9_400x400.jpeg">
-
-
+    <meta charset="UTF-8" />
+    <title>Asistente IA Educativo</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
             margin: 0;
-            background-color: #ffffff;
-            background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: #000000;
-            transition: background-color 0.3s, color 0.3s;
-            line-height: 1.6;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            background: transparent url('https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif') repeat;
-            opacity: 0.1;
-            z-index: -2;
+            padding: 0;
         }
 
         header {
-            background-color: #0f172a;
-            color: #00ffc3;
-            padding: 20px;
+            background: #4a4aff;
+            color: white;
+            padding: 15px;
             text-align: center;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0, 255, 195, 0.2);
-            overflow: hidden;
         }
 
-        /* Aquí está la corrección para que el contenido esté sobre las partículas */
-        header * {
-            position: relative;
-            z-index: 1;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            width: 150%;
-            height: 150%;
-            pointer-events: none;
-            background:
-                radial-gradient(circle, #00ffc3 2px, transparent 3px),
-                radial-gradient(circle, #5eead4 2px, transparent 3px),
-                radial-gradient(circle, #00ffc3 2px, transparent 3px),
-                radial-gradient(circle, #5eead4 2px, transparent 3px);
-            background-size: 200px 200px;
-            background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
-            animation: mover-particulas 20s linear infinite;
-            transform: translateX(-50%);
-            opacity: 0.2;
-            z-index: 0;
-            filter: blur(1px);
-        }
-
-        #modo-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #00ffc3;
-            color: #0f172a;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            animation: neón-brillo 4s infinite alternate;
-            box-shadow: 0 0 10px #00ffc3;
-        }
-
-        #modo-toggle:hover {
-            background-color: #5eead4;
-            box-shadow: 0 0 20px #5eead4;
-        }
-
-        nav {
-            background-color: #1e293b;
-            padding: 12px;
-            text-align: center;
-            box-shadow: inset 0 -2px 0 #00ffc3;
-        }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 20px;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #00ffc3;
-        }
-
-        main {
+        #chat {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
             padding: 20px;
-            max-width: 1000px;
+            border-radius: 10px;
+            height: 65vh;
+            overflow-y: auto;
+            box-shadow: 0px 2px 5px rgba(0,0,0,.2);
+        }
+
+        .msg {
+            margin-bottom: 15px;
+        }
+
+        .user {
+            text-align: right;
+            color: #333;
+        }
+
+        .ia {
+            text-align: left;
+            color: #4a4aff;
+        }
+
+        #input-area {
+            width: 90%;
+            max-width: 800px;
             margin: auto;
+            display: flex;
+            gap: 10px;
+            padding-bottom: 20px;
         }
 
-        article {
-            background-color: #f9f9f9;
-            padding: 25px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        article:hover {
-            transform: translateY(-4px);
-        }
-
-        article img {
-            max-width: 100%;
-            border-radius: 6px;
-            margin-top: 15px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #0f172a;
-            color: #00ffc3;
-        }
-
-        h1,
-        h2,
-        h3 {
-            color: #0f172a;
-        }
-
-        header h1 {
-            color: #00ffc3;
-            animation: neón-brillo 3s infinite alternate;
-        }
-
-        .contact-form {
-            background-color: #f1f5f9;
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
+        input {
+            flex: 1;
             padding: 12px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #cbd5e1;
-            border-radius: 5px;
-            font-size: 1em;
+            border-radius: 8px;
+            border: 1px solid #ccc;
         }
 
-        .contact-form button {
-            background-color: #00ffc3;
-            color: #0f172a;
-            padding: 12px 24px;
+        button {
+            background: #4a4aff;
+            color: white;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .contact-form button:hover {
-            background-color: #5eead4;
-        }
-
-        #buscador {
-            width: 80%;
-            padding: 12px;
+            padding: 12px 20px;
             border-radius: 8px;
-            border: 1px solid #94a3b8;
-            font-size: 1em;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
-        .dark-mode {
-            background-color: #0d1117;
-            color: #e0e0e0;
+        button:hover {
+            background: #3535cc;
         }
 
-        .dark-mode header {
-            background-color: #0f172a;
-            color: #00ffc3;
-        }
-
-        .dark-mode nav {
-            background-color: #1f2937;
-        }
-
-        .dark-mode article {
-            background-color: #161b22;
-            box-shadow: 0 4px 10px rgba(0, 255, 195, 0.1);
-        }
-
-        .dark-mode footer {
-            background-color: #0f172a;
-        }
-
-        .dark-mode h1,
-        .dark-mode h2,
-        .dark-mode h3 {
-            color: #5eead4;
-        }
-
-        .dark-mode .contact-form {
-            background-color: #1e293b;
-        }
-
-        .dark-mode #modo-toggle {
-            background-color: #00ffc3;
-            color: #0f172a;
-        }
-
-        .dark-mode #modo-toggle:hover {
-            background-color: #5eead4;
-        }
-
-        .dark-mode .contact-form input,
-        .dark-mode .contact-form textarea {
-            background-color: #334155;
-            color: #f1f5f9;
-            border: 1px solid #475569;
-        }
-
-        .dark-mode .contact-form button {
-            background-color: #00ffc3;
-        }
-
-        .dark-mode .contact-form button:hover {
-            background-color: #5eead4;
-        }
-
-        .dark-mode #buscador {
-            background-color: #1e293b;
-            color: #f1f1f1;
-            border: 1px solid #475569;
-        }
-
-        @keyframes neón-brillo {
-
-            0%,
-            100% {
-                text-shadow:
-                    0 0 5px #00ffc3,
-                    0 0 10px #00ffc3,
-                    0 0 20px #00ffc3,
-                    0 0 40px #00ffc3;
-            }
-
-            50% {
-                text-shadow:
-                    0 0 10px #5eead4,
-                    0 0 20px #5eead4,
-                    0 0 30px #5eead4,
-                    0 0 50px #5eead4;
-            }
-        }
-
-        @keyframes mover-particulas {
-            0% {
-                background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
-            }
-
-            100% {
-                background-position: 100px 100px, 150px 150px, 200px 200px, 250px 250px;
-            }
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 150%;
-            height: 150%;
-            pointer-events: none;
-            background:
-                radial-gradient(circle, #00ffc3 2px, transparent 3px),
-                radial-gradient(circle, #5eead4 2px, transparent 3px),
-                radial-gradient(circle, #00ffc3 2px, transparent 3px),
-                radial-gradient(circle, #5eead4 2px, transparent 3px);
-            background-size: 200px 200px;
-            background-position: 0 0, 50px 50px, 100px 100px, 150px 150px;
-            animation: mover-particulas 20s linear infinite;
-            transform: translateX(-25%);
-            opacity: 0.1;
-            z-index: -3;
-            filter: blur(1px);
-        }
-
-
-        /* EFECTO DE MÁQUINA DE ESCRIBIR EN EL SUBTÍTULO */
-        header p {
-            overflow: hidden;
-            border-right: .15em solid #00ffc3;
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .05em;
-            animation: escribir 4s steps(40, end) forwards, parpadeo-cursor 0.75s step-end infinite;
-            max-width: 49ch;
-            width: 0;
-        }
-
-
-        @keyframes escribir {
-            from {
-                width: 0;
-            }
-
-            to {
-                width: 45%;
-                /* Aquí puedes cambiar el valor */
-            }
-        }
-
-
-        @keyframes parpadeo-cursor {
-
-            from,
-            to {
-                border-color: transparent;
-            }
-
-            50% {
-                border-color: #00ffc3;
-            }
-        }
-
-        header h1:hover {
-            transform: scale(1.05) rotateX(5deg) rotateY(5deg);
-            text-shadow:
-                0 0 10px #00ffc3,
-                0 0 20px #5eead4,
-                0 0 30px #5eead4;
-            transition: transform 0.3s ease, text-shadow 0.3s ease;
-        }
     </style>
-
-</head>
-
 <body>
 
-    <header>
-        <h1>Mundo Informático</h1>
-        <p>Un blog técnico para aprender informática paso a paso</p>
-        <button id="modo-toggle">Modo oscuro</button>
-    </header>
+<header>
+    <h1>Asistente Educativo de IA</h1>
+</header>
 
-    <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#entradas">Entradas</a>
-        <a href="#contacto">Contacto</a>
-    </nav>
-    <div style="text-align: center; padding: 20px;">
-        <input type="text" id="buscador" placeholder="Buscar en el blog..."
-            style="width: 80%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-    </div>
+<div id="chat"></div>
 
-    <main id="inicio">
+<div id="input-area">
+    <input id="userInput" type="text" placeholder="Escribe tu pregunta..." />
+    <button onclick="sendMessage()">Enviar</button>
+</div>
 
-        <section id="sobre-mi">
-            <article>
-                <h2>Sobre mí</h2>
-                <p>Hola, soy estudiante de 2º SMR, me llamo Alejandro González y me apasiona la informatica. En este
-                    blog comparto lo que aprendo
-                    sobre informática, sistemas operativos, montaje de PCs y herramientas útiles para el día a día.</p>
-            </article>
-        </section>
+<script>
+    async function sendMessage() {
+        const input = document.getElementById("userInput");
+        const chat = document.getElementById("chat");
+        const userText = input.value;
 
-        <section id="entradas" role="region" aria-label="Entradas del blog">
+        if (!userText.trim()) return;
 
+        // Mostrar mensaje del usuario
+        chat.innerHTML += `<p class="msg user"><strong>Tú:</strong> ${userText}</p>`;
+        input.value = "";
+        chat.scrollTop = chat.scrollHeight;
 
-            <article aria-labelledby="entrada1">
-                <h2 id="entrada1">¿Qué es un sistema operativo?</h2>
+        // Llamada a la API de OpenAI
+        const apiKey = "gpt-4.1-2025-04-14"; // <-- PON TU API KEY AQUÍ
 
-                <p>Un sistema operativo es el software principal que permite interactuar con el hardware del ordenador y
-                    ejecutar otros programas. Algunos ejemplos populares son Windows, Linux y macOS.</p>
-                <img src="https://nahil.com.sa/wp-content/uploads/2024/11/mac-vs-windows.jpg"
-                    alt="Imagen sobre sistema operativo">
-                <p><strong>Funciones clave:</strong></p>
-                <ul>
-                    <li>Gestión de recursos del sistema</li>
-                    <li>Interfaz para el usuario</li>
-                    <li>Control de archivos y procesos</li>
-                </ul>
-                <p>📎 <a href="https://es.wikipedia.org/wiki/Sistema_operativo" target="_blank">Más información sobre
-                        sistemas operativos</a></p>
-            </article>
-
-            <article>
-                <h2>Cómo montar un PC paso a paso</h2>
-                <p>Montar tu propio ordenador te permite ahorrar dinero y elegir exactamente los componentes que
-                    necesitas. Aquí tienes los pasos básicos:</p>
-                <ol>
-                    <li>Instalar la CPU y la RAM en la placa base</li>
-                    <li>Colocar la placa en la torre</li>
-                    <li>Instalar la fuente de alimentación</li>
-                    <li>Conectar el almacenamiento y la gráfica</li>
-                    <li>Cerrar la torre y conectar periféricos</li>
-                </ol>
-                <img src="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2016/10/202558-como-montar-tu-pc-sobremesa.jpg?tf=3840x"
-                    alt="Montaje de PC">
-                <p>🎥 <a href="https://www.youtube.com/watch?v=VIF43-0mDk4" target="_blank">Ver tutorial en YouTube</a>
-                </p>
-            </article>
-
-            <article>
-                <h2>5 herramientas gratuitas para limpiar tu PC</h2>
-                <p>¿Tu PC va lento? Usa estas herramientas gratuitas para optimizar su rendimiento:</p>
-                <ul>
-                    <li><strong>CCleaner:</strong> Limpia archivos innecesarios.</li>
-                    <li><strong>Malwarebytes:</strong> Detecta y elimina malware.</li>
-                    <li><strong>BleachBit:</strong> Alternativa de código abierto.</li>
-                    <li><strong>AVG TuneUp:</strong> Mejora el rendimiento general.</li>
-                    <li><strong>Glary Utilities:</strong> Paquete todo-en-uno.</li>
-                </ul>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/CCleaner.png" alt="Ejemplo de CCleaner">
-                <p>📎 <a href="https://www.ccleaner.com/" target="_blank">Descargar CCleaner</a></p>
-            </article>
-
-        </section>
-
-        <section id="contacto">
-            <article class="contact-form">
-                <h2>Contacto</h2>
-                <form action="https://formsubmit.co/gonzalezcaceresalex@gmail.com" method="POST">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
-
-                    <label for="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-
-                    <!-- Opcional: evitar CAPTCHA -->
-                    <input type="hidden" name="_captcha" value="false">
-
-                    <!-- Opcional: redirigir después de enviar -->
-                    <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
-
-                    <button type="submit">Enviar</button>
-                </form>
-
-            </article>
-        </section>
-
-    </main>
-
-    <footer>
-        <p>© 2025 Mundo Informático | Blog creado para el módulo de Aplicaciones Web - 2º SMR</p>
-    </footer>
-
-    <script>
-        // Mantengo tu código original para modo oscuro y buscador intacto
-        const botonModo = document.getElementById('modo-toggle');
-        botonModo.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            botonModo.textContent = document.body.classList.contains('dark-mode') ? 'Modo claro' : 'Modo oscuro';
-        });
-
-        const buscador = document.getElementById('buscador');
-        const articulos = document.querySelectorAll('#entradas article');
-
-        buscador.addEventListener('input', () => {
-            const texto = buscador.value.toLowerCase().trim();
-            let primerCoincidencia = null;
-            let hayCoincidencias = false;
-
-            articulos.forEach(articulo => {
-                const contenido = articulo.textContent.toLowerCase();
-                const coincide = contenido.includes(texto);
-                articulo.style.display = coincide || texto === "" ? 'block' : 'none';
-            });
-        });
-
-        buscador.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-
-                const valor = buscador.value.toLowerCase().trim();
-
-                const secciones = {
-                    'inicio': '#inicio',
-                    'sobre mí': '#sobre-mi',
-                    'sobremi': '#sobre-mi',
-                    'entradas': '#entradas',
-                    'contacto': '#contacto'
-                };
-
-                const destino = secciones[valor];
-
-                if (destino) {
-                    location.href = destino; // Salto inmediato a la sección sin animación
-                    buscador.value = "";
-                } else {
-                    let coincidencias = 0;
-                    articulos.forEach(articulo => {
-                        const contenido = articulo.textContent.toLowerCase();
-                        const coincide = contenido.includes(valor);
-                        articulo.style.display = coincide ? 'block' : 'none';
-                        if (coincide) coincidencias++;
-                    });
-
-                    if (coincidencias === 0) {
-                        alert("No se encontraron resultados relacionados con esa búsqueda.");
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: "gpt-4.1-mini",
+                messages: [
+                    {
+                        role: "system",
+                        content: "Eres un asistente educativo que enseña a usar la inteligencia artificial con explicaciones claras, simples y ejemplos prácticos."
+                    },
+                    {
+                        role: "user",
+                        content: userText
                     }
-                }
-            }
+                ]
+            })
         });
 
-        // NUEVO: Mostrar sólo la sección correspondiente cuando clicas en el nav
-        const enlacesNav = document.querySelectorAll('nav a');
-        const secciones = document.querySelectorAll('main > section');
+        const data = await response.json();
+        const aiText = data.choices[0].message.content;
 
-        // Inicialmente mostrar solo #inicio y ocultar el resto
-        secciones.forEach(sec => {
-            if (sec.id === 'inicio') {
-                sec.style.display = 'block';
-            } else {
-                sec.style.display = 'none';
-            }
-        });
-
-        // Evento para controlar clicks en el menú
-        enlacesNav.forEach(enlace => {
-            enlace.addEventListener('click', function (event) {
-                event.preventDefault(); // evitar el salto automático
-
-                const destinoId = this.getAttribute('href').substring(1); // quitar el "#"
-
-                // Mostrar solo la sección clicada
-                secciones.forEach(sec => {
-                    if (sec.id === destinoId) {
-                        sec.style.display = 'block';
-                    } else {
-                        sec.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-
-
+        // Mostrar respuesta de la IA
+        chat.innerHTML += `<p class="msg ia"><strong>IA:</strong> ${aiText}</p>`;
+        chat.scrollTop = chat.scrollHeight;
+    }
+</script>
 
 </body>
-
 </html>
