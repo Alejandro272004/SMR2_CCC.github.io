@@ -1,137 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <title>Asistente IA Educativo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GemiBank | Tu futuro hoy</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            margin: 0;
-            padding: 0;
+        :root {
+            --primary: #004a99;
+            --secondary: #00cfb4;
+            --dark: #1a1a1a;
+            --light: #f4f7f6;
         }
 
-        header {
-            background: #4a4aff;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--light); color: var(--dark); }
+        
+        header { background: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
 
-        #chat {
-            width: 90%;
-            max-width: 800px;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            height: 65vh;
-            overflow-y: auto;
-            box-shadow: 0px 2px 5px rgba(0,0,0,.2);
-        }
+        .hero { background: linear-gradient(135deg, var(--primary), #002d5e); color: white; padding: 60px 5%; text-align: center; }
+        
+        .container { padding: 40px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
 
-        .msg {
-            margin-bottom: 15px;
-        }
-
-        .user {
-            text-align: right;
-            color: #333;
-        }
-
-        .ia {
-            text-align: left;
-            color: #4a4aff;
-        }
-
-        #input-area {
-            width: 90%;
-            max-width: 800px;
-            margin: auto;
-            display: flex;
-            gap: 10px;
-            padding-bottom: 20px;
-        }
-
-        input {
-            flex: 1;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            background: #4a4aff;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #3535cc;
-        }
-
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; }
+        
+        .btn-login { background: var(--secondary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; }
     </style>
+</head>
 <body>
 
 <header>
-    <h1>Asistente Educativo de IA</h1>
+    <div class="logo">GemiBank</div>
+    <button class="btn-login">Banca Online</button>
 </header>
 
-<div id="chat"></div>
+<section class="hero">
+    <h1>La banca digital que se adapta a ti</h1>
+    <p>Sin comisiones, sin complicaciones. Abre tu cuenta en 5 minutos.</p>
+</section>
 
-<div id="input-area">
-    <input id="userInput" type="text" placeholder="Escribe tu pregunta..." />
-    <button onclick="sendMessage()">Enviar</button>
-</div>
+<section class="container">
+    <div class="card">
+        <h3>Cuentas Personales</h3>
+        <p>Gestiona tus ahorros con una tasa del 2.5% anual.</p>
+    </div>
+    <div class="card">
+        <h3>Tarjetas de Crédito</h3>
+        <p>Hasta un 3% de cashback en todas tus compras.</p>
+    </div>
+    <div class="card">
+        <h3>Seguridad 24/7</h3>
+        <p>Monitoreo constante y encriptación de nivel militar.</p>
+    </div>
+</section>
 
-<script>
-    async function sendMessage() {
-        const input = document.getElementById("userInput");
-        const chat = document.getElementById("chat");
-        const userText = input.value;
-
-        if (!userText.trim()) return;
-
-        // Mostrar mensaje del usuario
-        chat.innerHTML += `<p class="msg user"><strong>Tú:</strong> ${userText}</p>`;
-        input.value = "";
-        chat.scrollTop = chat.scrollHeight;
-
-        // Llamada a la API de OpenAI
-        const apiKey = "gpt-4.1-2025-04-14"; // <-- PON TU API KEY AQUÍ
-
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                model: "gpt-4.1-mini",
-                messages: [
-                    {
-                        role: "system",
-                        content: "Eres un asistente educativo que enseña a usar la inteligencia artificial con explicaciones claras, simples y ejemplos prácticos."
-                    },
-                    {
-                        role: "user",
-                        content: userText
-                    }
-                ]
-            })
-        });
-
-        const data = await response.json();
-        const aiText = data.choices[0].message.content;
-
-        // Mostrar respuesta de la IA
-        chat.innerHTML += `<p class="msg ia"><strong>IA:</strong> ${aiText}</p>`;
-        chat.scrollTop = chat.scrollHeight;
-    }
-</script>
+<section class="container" style="max-width: 400px; margin: auto;">
+    <div class="card">
+        <h3>Ingreso Clientes</h3>
+        <form>
+            <input type="text" placeholder="Usuario o DNI">
+            <input type="password" placeholder="Contraseña">
+            <button type="submit" class="btn-login" style="width: 100%;">Entrar</button>
+        </form>
+    </div>
+</section>
 
 </body>
 </html>
